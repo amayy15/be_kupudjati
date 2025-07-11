@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* Basic reset styles */
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+
+      .container {
+        width: 100%;
+        overflow: hidden;
+        background: url("https://i.imgur.com/ZYd3cuG.png");
+        background-size: cover;
+        padding: 0 20em;
+        box-sizing: border-box;
+      }
+
+      .navbar {
+        width: 70%;
+        background-color: #f9f9f9;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+
+      .navbar img {
+        background-color: #e4e4e4;
+        border-radius: 10px;
+      }
+
+      .content {
+        padding: 40px;
+        background-color: #f9f9f9;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 20px;
+      }
+
+      /* Spoiler effect for access key */
+      .access-key {
+        display: inline-block;
+        padding: 10px;
+        background-color: #f3f3f3;
+        border-radius: 10px;
+        font-family: monospace;
+        margin: 20px 0;
+        color: transparent; /* Hide text */
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Blurred effect */
+        cursor: default;
+      }
+
+      /* Revealed text when highlighted */
+      .access-key::selection {
+        color: #000;
+        background: #ddd;
+      }
+
+      h1 {
+        font-size: 24px;
+        color: #333;
+      }
+
+      p {
+        font-size: 16px;
+        color: #555;
+      }
+
+      /* Responsive adjustments for mobile screens */
+      @media screen and (max-width: 768px) {
+        .container {
+          padding: 0 2em;
+        }
+
+        .navbar,
+        .content {
+          width: 100%;
+          background-color: #f9f9f9;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+          box-sizing: border-box;
+        }
+
+        .navbar {
+          padding: 20px;
+          border-bottom-left-radius: 20px;
+          border-bottom-right-radius: 20px;
+        }
+
+        .content {
+          padding: 40px;
+          border-radius: 20px;
+        }
+
+        h1 {
+          font-size: 20px;
+        }
+
+        p,
+        .access-key {
+          font-size: 14px;
+        }
+
+        ol {
+          text-align: left;
+          padding-left: 10px;
+        }
+
+        .access-key {
+          font-size: 12px;
+        }
+      }
+
+      /* Further adjustments for very small screens */
+      @media screen and (max-width: 480px) {
+        .container {
+          padding: 0 1em;
+        }
+
+        .navbar,
+        .content {
+          background-color: #f9f9f9;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+          padding: 15px;
+          border-bottom-left-radius: 20px;
+          border-bottom-right-radius: 20px;
+        }
+
+        .content {
+          padding: 30px;
+          border-radius: 20px;
+        }
+
+        h1 {
+          font-size: 18px;
+        }
+
+        p,
+        .access-key {
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Main Container -->
+    <table
+      class="container"
+      role="presentation"
+      cellpadding="0"
+      cellspacing="0"
+    >
+      <!-- Top Navbar with Logos -->
+      <tr>
+        <td class="navbar" align="center">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7J_ErKhVH2i3QhqFB9DErlRaWCEMK_1zpTA&s"
+            alt="Logo 1"
+            style="max-height: 50px; margin-right: 15px"
+          />
+          <img
+            src="https://i.imgur.com/TcJdj63.png"
+            alt="Logo 2"
+            style="max-height: 50px"
+          />
+        </td>
+      </tr>
+
+      <!-- Spacer Row -->
+      <tr>
+        <td height="20"></td>
+      </tr>
+
+      <!-- Content Box -->
+      <tr>
+        <td class="content">
+          <h1>Selamat datang, {{username}}!</h1>
+          <p>
+            Terima kasih telah bekerja sama dengan Dinas Perpustakaan dan
+            Kearsipan Provinsi Jawa Timur
+          </p>
+          <p>Password:</p>
+          <div class="access-key">{{password}}</div>
+          <p style="font-size: 14px; color: #888">
+            (Highlight text di atas untuk melihat password)
+          </p>
+          <p>Langkah Selanjutnya:</p>
+          <ol
+            style="
+              text-align: left;
+              display: inline-block;
+              margin: 0 auto;
+              padding-left: 15px;
+            "
+          >
+            <li>Kunjungi Website <a href="#">Kupudjati</a></li>
+            <li>
+              Login menggunakan email anda dan password yang sudah diberikan
+            </li>
+            <!-- <li>Selamat bertugas!</li> -->
+          </ol>
+          <p>
+            Butuh Bantuan?
+            <a
+              href="https://wa.me/12345678900?text=Hello%2C%20I%20am%20interested%20in%20your%20services"
+              target="_blank"
+            >
+              Hubungi Kami di WhatsApp
+            </a>
+          </p>
+        </td>
+      </tr>
+
+      <!-- Spacer Row -->
+      <tr>
+        <td height="60"></td>
+      </tr>
+    </table>
+  </body>
+</html>
