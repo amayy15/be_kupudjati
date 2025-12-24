@@ -18,6 +18,35 @@ router.get("/sub-categories", async (req, res) => {
   }
 });
 
+router.get("/sub-categories/search", async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const search = req.query.search || "";
+
+    const query = search
+      ? { subCtgy_name: { $regex: search, $options: "i" } }
+      : {};
+
+    const skip = (page - 1) * limit;
+
+    const subCtgy = await SubCategory.find(query).skip(skip).limit(limit);
+
+    const total = await SubCategory.countDocuments(query);
+
+    res.status(200).json({
+      error: false,
+      subCtgy,
+      total,
+      page,
+      totalPages: Math.ceil(total / limit),
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: true, message: "Internal server error" });
+  }
+});
+
 router.get("/sub-categories/:id", async (req, res) => {
   try {
     const subCtgy = await SubCategory.find({ ctgy_id: req.params.id });
@@ -219,6 +248,28 @@ router.put("/sub-category/:id", async (req, res) => {
         message: `Sub Kategori \'${subCtgy.subCtgy_name}\' Berhasil Diedit`,
         subCtgy,
       });
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: true, message: "Internal server error" });
+  }
+});
+
+router.delete("/sub-category/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const subCtgy = await SubCategory.findByIdAndDelete(id);
+
+    if (!subCtgy) {
+      return res.status(404).json({
+        error: true,
+        message: "Sub kategori tidak ditemukan",
+      });
+    }
+
+    res.status(200).json({
+      error: false,
+      message: `Sub Kategori "${subCtgy.subCtgy_name}" Berhasil Dihapus`,
     });
   } catch (error) {
     console.log(error);
